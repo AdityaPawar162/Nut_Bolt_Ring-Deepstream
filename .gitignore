@@ -1,0 +1,6 @@
+nvdsinfer_custom_impl_Yolo/libnvdsinfer_custom_impl_Yolo.so
+nvdsinfer_custom_impl_Yolo/nvdsparsebbox_Yolo.o
+nvdsinfer_custom_impl_Yolo/nvdsparsebbox_Yolo_cuda.o
+nvdsinfer_custom_impl_Yolo/yoloForward.o
+nvdsinfer_custom_impl_Yolo/yoloForward_nc.o
+nvdsinfer_custom_impl_Yolo/yoloForward_v2.o
