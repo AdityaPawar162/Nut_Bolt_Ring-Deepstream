@@ -587,7 +587,7 @@ namespace NutBoltDetection
             strdup("config_infer_primary.txt");
 
         TRACKER_CONFIG_FILE =
-            strdup("tracker_config.txt");
+            strdup("tracker/tracker_config.txt");
 
         // Engine Paths
         PGIE_NUT_BOLT_ENGINE_PATH =
