@@ -89,10 +89,10 @@ namespace NutBoltDetection
         NvDsObjectMeta *obj_meta = (NvDsObjectMeta *)obj_meta_data;
 #ifndef PLATFORM_TEGRA
         obj_meta->rect_params.has_bg_color = has_bg_color;
-        obj_meta->rect_params.bg_color.red = red;
-        obj_meta->rect_params.bg_color.green = green;
-        obj_meta->rect_params.bg_color.blue = blue;
-        obj_meta->rect_params.bg_color.alpha = alpha;
+        obj_meta->rect_params.bg_color.red = 0;
+        obj_meta->rect_params.bg_color.green = 0;
+        obj_meta->rect_params.bg_color.blue = 0;
+        obj_meta->rect_params.bg_color.alpha = 0;
 #endif
         obj_meta->rect_params.border_color.red = red;
         obj_meta->rect_params.border_color.green = green;
@@ -101,32 +101,26 @@ namespace NutBoltDetection
         obj_meta->text_params.font_params.font_size = 14;
     }
 
-    void
-    Detector::addDisplayMeta(gpointer batch_meta_data, gpointer frame_meta_data)
+    void Detector::addDisplayMeta(gpointer batch_meta_data, gpointer frame_meta_data, int frame_number, guint64 obj_id, guint64 nut_count, guint64 bolt_count, guint64 ring_count)
     {
-
         NvDsBatchMeta *batch_meta = (NvDsBatchMeta *)batch_meta_data;
         NvDsFrameMeta *frame_meta = (NvDsFrameMeta *)frame_meta_data;
 
         // To access the data that will be used to draw
         NvDsDisplayMeta *display_meta = NULL;
         NvOSD_TextParams *txt_params = NULL;
-        NvOSD_LineParams *line_params = NULL;
 
         int offset = 0;
         display_meta = nvds_acquire_display_meta_from_pool(batch_meta);
         txt_params = display_meta->text_params;
-        line_params = display_meta->line_params;
         display_meta->num_labels = 1;
 
-        // if (txt_params->display_text)
-        //   g_free (txt_params->display_text);
         txt_params->display_text = (char *)g_malloc0(MAX_DISPLAY_LEN);
 
         update_fps(frame_meta->source_id);
 
-        offset = snprintf(txt_params->display_text, MAX_DISPLAY_LEN, "Source: %d | FPS: %d | ",
-                          frame_meta->source_id, fps[frame_meta->source_id].display_fps);
+        offset = snprintf(txt_params->display_text, MAX_DISPLAY_LEN, "Frame Number: %d | Total: %d | Nuts: %d | Bolts: %d | Rings: %d",
+                          frame_number, obj_id, nut_count, bolt_count, ring_count);
 
         /* Now set the offsets where the string should appear */
         txt_params->x_offset = 10;
@@ -155,6 +149,7 @@ namespace NutBoltDetection
                                          gpointer u_data)
     {
         GstBuffer *buf = (GstBuffer *)info->data;
+        static guint frame_number = 0;
 
         // To access the entire batch data
         NvDsBatchMeta *batch_meta = NULL;
@@ -198,45 +193,80 @@ namespace NutBoltDetection
                 // Ignore Null frame meta.
                 continue;
             }
+            guint frame_num = frame_meta->frame_num;
+            guint source_id = frame_meta->source_id;
 
-            guint nut_count = 0;
-            guint bolt_count = 0;
-            guint ring_count = 0;
+            static guint64 nut_count = 0;
+            static guint64 bolt_count = 0;
+            static guint64 ring_count = 0;
+            static guint64 nut_count_previous = 0;
+            static guint64 nut_count_original = 0;
+            static guint64 bolt_count_previous = 0;
+            static guint64 bolt_count_original = 0;
+            static guint64 ring_count_previous = 0;
+            static guint64 ring_count_original = 0;
 
-            for (l_obj = frame_meta->obj_meta_list; l_obj != NULL;
-                 l_obj = l_obj->next)
+            static guint64 obj_id_previous = 0;
+            static guint64 obj_id = 0;
+            static gint u_id = 0;
+
+            for (l_obj = frame_meta->obj_meta_list; l_obj != NULL; l_obj = l_obj->next)
             {
-
                 obj_meta = (NvDsObjectMeta *)(l_obj->data);
-
+                obj_id = obj_meta->object_id;
                 if (obj_meta == NULL)
                 {
-                    // Ignore Null object.
                     continue;
                 }
 
-                gint class_index = obj_meta->class_id;
+                // Debugging output to check class ID
+                // g_print("Object class_id: %d\n", obj_meta->class_id);
 
-                if (class_index == nuts)
+                switch (obj_meta->class_id)
                 {
+                case PGIE_CLASS::nuts:
                     changeBBoxColor(obj_meta, 1, 0.0, 1.0, 0.0, 0.25); // Green Color
                     nut_count++;
-                }
-                else if (class_index == bolt)
-                {
+                    break;
+                case PGIE_CLASS::bolt:
                     changeBBoxColor(obj_meta, 1, 0.0, 0.0, 1.0, 0.25); // Blue Color
                     bolt_count++;
-                }
-                else if (class_index == ring)
-                {
-                    changeBBoxColor(obj_meta, 1, 1.0, 0.0, 0.0, 0.25); // Blue Color
+                    break;
+                case PGIE_CLASS::ring:
+                    changeBBoxColor(obj_meta, 1, 1.0, 0.0, 0.0, 0.25); // Red Color
                     ring_count++;
+                    break;
+                default:
+                    g_print("Unknown class_id: %d\n", obj_meta->class_id);
                 }
             }
+            if (((nut_count - nut_count_previous) > 0) && (obj_id - obj_id_previous) > 0)
+            {
+                nut_count_original++;
+            }
+
+            if (((bolt_count - bolt_count_previous) > 0) && (obj_id - obj_id_previous) > 0)
+            {
+                bolt_count_original++;
+            }
+
+            if (((ring_count - ring_count_previous) > 0) && (obj_id - obj_id_previous) > 0)
+            {
+                ring_count_original++;
+            }
+
+            // Debugging output to check counters
+            g_print("Frame Number: %d,Total: %d,Nut count: %d, Bolt count: %d, Ring count: %d\n", frame_num, obj_id, nut_count_original, bolt_count_original, ring_count_original);
+
             // Add Information to every stream
-            addDisplayMeta(batch_meta, frame_meta);
+            addDisplayMeta(batch_meta, frame_meta, frame_number, obj_id, nut_count_original, bolt_count_original, ring_count_original);
+            nut_count_previous = nut_count;
+            bolt_count_previous = bolt_count;
+            ring_count_previous = ring_count;
+            obj_id_previous = obj_id;
         }
         gst_buffer_unmap(buf, &in_map_info);
+        frame_number++;
         return GST_PAD_PROBE_OK;
     }
 

@@ -34,7 +34,7 @@ namespace fs = std::filesystem;
 
 #define SOURCE_PATH "input_sources.txt"
 #define PERF_INTERVAL 2
-#define MAX_DISPLAY_LEN 64
+#define MAX_DISPLAY_LEN 80
 #define COMPUTE_MODE "fp32"
 #define MAX_TRACKING_ID_LEN 16
 
@@ -101,8 +101,12 @@ namespace NutBoltDetection
         static char *PGIE_NUT_BOLT_DETECTOR_CONFIG_FILE_PATH;
         static char *TRACKER_CONFIG_FILE;
 
+       static vector<int> nut_counts;
+       static vector<int> bolt_counts;
+       static vector<int> ring_counts;
+
     public:
-        gint frame_number;
+        
         gboolean display_off;
 
         GOptionEntry entries[2] = {
@@ -121,7 +125,7 @@ namespace NutBoltDetection
         static void changeBBoxColor(gpointer obj_meta_data, int has_bg_color, float red, float green,
                                     float blue, float alpha);
 
-        static void addDisplayMeta(gpointer batch_meta_data, gpointer frame_meta_data);
+        static void addDisplayMeta(gpointer batch_meta_data, gpointer frame_meta_data,int frame_number,guint64 obj_id,guint64 nut_count,guint64 bolt_count,guint64 ring_count);
 
         static GstPadProbeReturn tiler_src_pad_buffer_probe(GstPad *pad, GstPadProbeInfo *info,
                                                             gpointer u_data);
@@ -162,7 +166,7 @@ namespace NutBoltDetection
             }
 
             display_off = false;
-            frame_number = 0;
+            
         }
         ~Detector();
     };
