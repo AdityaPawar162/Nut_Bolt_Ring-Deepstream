@@ -72,7 +72,6 @@ addBBoxProposal(const float bx1, const float by1, const float bx2, const float b
   bbi.detectionConfidence = maxProb;
   bbi.classId = maxIndex;
   binfo.push_back(bbi);
-  ObjectCounter::incrementCount(maxIndex);
 }
 
 static std::vector<NvDsInferParseObjectInfo>
@@ -145,7 +144,6 @@ NvDsInferParseCustomYolo(std::vector<NvDsInferLayerInfo> const &outputLayersInfo
   }
 
   std::vector<NvDsInferParseObjectInfo> objects;
-  ObjectCounter::resetCounts();
 
   const NvDsInferLayerInfo &boxes = outputLayersInfo[0];
   const NvDsInferLayerInfo &scores = outputLayersInfo[1];
@@ -160,7 +158,6 @@ NvDsInferParseCustomYolo(std::vector<NvDsInferLayerInfo> const &outputLayersInfo
   objects.insert(objects.end(), outObjs.begin(), outObjs.end());
 
   objectList = objects;
-  ObjectCounter::printCounts();
 
   return true;
 }
