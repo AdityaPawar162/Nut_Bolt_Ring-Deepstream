@@ -1,0 +1,10 @@
+.vscode
+ds_src/nut_bolt_detection.o
+nvdsinfer_custom_impl_Yolo/libnvdsinfer_custom_impl_Yolo.so
+nvdsinfer_custom_impl_Yolo/nvdsparsebbox_Yolo.o
+nvdsinfer_custom_impl_Yolo/nvdsparsebbox_Yolo_cuda.o
+nvdsinfer_custom_impl_Yolo/yoloForward.o
+nvdsinfer_custom_impl_Yolo/yoloForward_nc.o
+nvdsinfer_custom_impl_Yolo/yoloForward_v2.o
+nvdsinfer_custom_impl_Yolo/layers/*.o
+model_b1_gpu0_fp32.engine
