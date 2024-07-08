@@ -33,7 +33,7 @@ ifeq ($(OPENCV),)
 	OPENCV=0
 endif
 
-GRAPH?=1
+GRAPH?=0
 ifeq ($(GRAPH),)
 	GRAPH=0
 endif
