@@ -24,7 +24,6 @@
  */
 
 #include "nvdsinfer_custom_impl.h"
-#include "object_counter.h"
 #include "utils.h"
 
 extern "C" bool

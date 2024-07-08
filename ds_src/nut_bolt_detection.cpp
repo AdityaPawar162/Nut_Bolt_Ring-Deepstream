@@ -614,7 +614,7 @@ namespace NutBoltDetection
 
         // Config Paths
         PGIE_NUT_BOLT_DETECTOR_CONFIG_FILE_PATH =
-            strdup("config_infer_primary.txt");
+            strdup("models/Yolov4/config_infer_primary.txt");
 
         TRACKER_CONFIG_FILE =
             strdup("tracker/tracker_config.txt");
