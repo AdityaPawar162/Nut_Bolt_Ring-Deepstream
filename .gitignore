@@ -1,4 +1,4 @@
-.vscode
+!.vscode
 ds_src/nut_bolt_detection.o
 nvdsinfer_custom_impl_Yolo/libnvdsinfer_custom_impl_Yolo.so
 nvdsinfer_custom_impl_Yolo/nvdsparsebbox_Yolo.o
