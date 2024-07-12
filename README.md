@@ -24,3 +24,10 @@ The main objective of this project is to develop a real-time detection system th
 Nut-Bolt-Ring Detection Application consists of an Intelligent Video Analytics Pipeline powered by Deepstream.
 
 This project is a proof-of-concept, aiming to monitor and count industrial components (specifically nuts, bolts, and rings) in manufacturing and assembly processes using Computer Vision. It is accelerated using NVIDIA DeepStream and can be implemented with a production line camera and an onboard Jetson platform, enhancing quality control and inventory management in real-time.
+
+This project detects objects of these 3 classes-nut, bolt and ring
+
+## Deepstream Setup
+
+
+
