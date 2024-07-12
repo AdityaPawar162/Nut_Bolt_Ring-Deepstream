@@ -16,8 +16,11 @@ The main objective of this project is to develop a real-time detection system th
 
 1. [Introduction](#Introduction)
 2. [Deepstream Setup](#Deepstream-Setup)
-3. [Project Setup](#Project-Setup)
-4. [Running the Application](#Running-the-Application)
+    1. [Prerequisites](#Prerequisites)
+    2. [Install Dependencies](#Install-Dependencies)
+    3. [Install Deepstream SDK](#Install-Deepstream-SDK)
+4. [Project Setup](#Project-Setup)
+5. [Running the Application](#Running-the-Application)
 
 ## Introduction
 
@@ -28,6 +31,56 @@ This project is a proof-of-concept, aiming to monitor and count industrial compo
 This project detects objects of these 3 classes-nut, bolt and ring
 
 ## Deepstream Setup
+
+### 1. Prerequisites
+
+You must install the following components:
+
+Ubuntu 22.04                                                                                                                                                                                
+GStreamer 1.20.3                                                                                                                                                                            
+NVIDIA driver 535.161.08                                                                                                                                                                    
+CUDA 12.4                                                                                                                                                                                   
+TensorRT 8.6.1.6                                                                                                                                                                            
+
+### 2. Install Dependencies
+
+```sh
+sudo apt install \
+libssl3 \
+libssl-dev \
+libgles2-mesa-dev \
+libgstreamer1.0-0 \
+gstreamer1.0-tools \
+gstreamer1.0-plugins-good \
+gstreamer1.0-plugins-bad \
+gstreamer1.0-plugins-ugly \
+gstreamer1.0-libav \
+libgstreamer-plugins-base1.0-dev \
+libgstrtspserver-1.0-0 \
+libjansson4 \
+libyaml-cpp-dev \
+libjsoncpp-dev \
+protobuf-compiler \
+gcc \
+make \
+git \
+python3
+```
+
+### 3. Install Deepstream SDK
+
+Download the DeepStream 7.0 dGPU Debian package deepstream-7.0_7.0.0-1_amd64.deb : https://catalog.ngc.nvidia.com/orgs/nvidia/resources/deepstream
+
+```sh
+sudo apt-get install ./deepstream-7.0_7.0.0-1_amd64.deb
+```
+
+## Project Setup
+
+### 1. Prerequisites
+
+This project is built without external dependencies, relying solely on C++'s Standard Template Library (STL). To leverage the latest features and optimizations, it utilizes GCC version 14. For optimal performance, we recommend installing GCC 14 on your system. Installation instructions for Ubuntu 22.04 and 24.04 can be found in the provided link.                         
+https://askubuntu.com/questions/1513160/how-to-install-gcc-14-on-ubuntu-22-04-and-24-04
 
 
 
