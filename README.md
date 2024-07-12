@@ -14,10 +14,10 @@ The main objective of this project is to develop a real-time detection system th
 
 ## Index
 
-1. Introduction[#Introduction]
-2. Deepstream Setup[#Deepstream-Setup]
-3. Project Setup[#Project-Setup]
-4. Running the Application[#Running-the-Application]
+1. [Introduction](#Introduction)
+2. [Deepstream Setup](#Deepstream-Setup)
+3. [Project Setup](#Project-Setup)
+4. [Running the Application](#Running-the-Application)
 
 ## Introduction
 
