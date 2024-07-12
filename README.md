@@ -83,4 +83,23 @@ This project is built without external dependencies, relying solely on C++'s Sta
 https://askubuntu.com/questions/1513160/how-to-install-gcc-14-on-ubuntu-22-04-and-24-04
 
 
+### 2. Edit Makefile
+
+#### 1.Update GCC path
+```sh
+CXX = /usr/local/gcc-14.1.0/bin/g++-14.1.0 
+```
+
+#### 2. Update the Deepstream Version
+```sh
+NVDS_VERSION := 7.0
+```
+
+#### 3. Omit 18-20 and 40-43,if OpenCV and libcurl is  not installed manually(Optional)
+If you haven't manually installed OpenCV and libcurl, modify the Makefile by removing or commenting out lines 18-20 and 40-43. These lines typically contain include paths and library links for these dependencies.
+
+![Makefile1](resources/Makefile1.png)
+![Makefile2](resources/Makefile2.png)
+
+
 
