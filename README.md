@@ -32,7 +32,7 @@ This project detects objects of these 3 classes-nut, bolt and ring
 
 ## Deepstream Setup
 
-### 1. Prerequisites
+###  1. Prerequisites
 
 You must install the following components:
 
@@ -79,7 +79,7 @@ sudo apt-get install ./deepstream-7.0_7.0.0-1_amd64.deb
 
 ### 1. Prerequisites
 
-This project is built without external dependencies, relying solely on C++'s Standard Template Library (STL). To leverage the latest features and optimizations, it utilizes GCC version 14. For optimal performance, we recommend installing GCC 14 on your system. Installation instructions for Ubuntu 22.04 and 24.04 can be found in the provided link.                         
+This project is built without external dependencies, relying solely on C++'s Standard Template Library (STL). To leverage the latest features and optimizations, it utilizes GCC version 14. For optimal performance, it's recommend installing GCC 14 on your system. Installation instructions for Ubuntu 22.04 and 24.04 can be found in the provided link.                       
 https://askubuntu.com/questions/1513160/how-to-install-gcc-14-on-ubuntu-22-04-and-24-04
 
 
