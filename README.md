@@ -158,4 +158,4 @@ Now, run the application by running the following command:
 
 ## Video demonstration of the App
 
-Link to video demonstartion [video_link](https://www.youtube.com/watch?v=p6SHAQUwRls)
+Link to video demonstartion [video_link]([https://www.youtube.com/watch?v=p6SHAQUwRls](https://www.youtube.com/watch?v=wP0lTCHs5Uw))
