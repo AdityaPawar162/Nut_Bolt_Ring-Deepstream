@@ -26,7 +26,10 @@ The main objective of this project is to develop a real-time detection system th
        2. [Update the Deepstream Version](#2-update-the-deepstream-version)
        3. [Optional](#3-omit-18-20-and-40-43if-opencv-and-libcurl-is--not-installed-manuallyoptional)
 4. [Running the Application](#Running-the-Application)
-
+    1. [Clone the Repository](#1-clone-the-repository)
+    2. [Run the application](#2-run-the-application)
+5. [Video Demonstration of the app](#video-demonstration-of-the-app)
+   
 ## Introduction
 
 Nut-Bolt-Ring Detection Application consists of an Intelligent Video Analytics Pipeline powered by Deepstream.
@@ -128,7 +131,7 @@ git clone https://github.com/AdityaPawar162/Nut_Bolt_Ring-Deepstream.git
 git clone git@github.com:AdityaPawar162/Nut_Bolt_Ring-Deepstream.git
 ```
 
-### 2. Run with different sources
+### 2. Run the application
 
 The computer vision part of the solution can be run on one or many input sources of multiple types, all powered using NVIDIA Deepstream.
 
@@ -153,6 +156,6 @@ Now, run the application by running the following command:
 ./nut_bolt_ring_detection
 ```
 
+## Video demonstration of the App
 
-
-
+Link to video demonstartion [video_link](https://www.youtube.com/watch?v=p6SHAQUwRls)
