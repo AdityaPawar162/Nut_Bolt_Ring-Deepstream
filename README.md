@@ -16,11 +16,16 @@ The main objective of this project is to develop a real-time detection system th
 
 1. [Introduction](#Introduction)
 2. [Deepstream Setup](#Deepstream-Setup)
-    1. [Prerequisites](#Prerequisites)
-    2. [Install Dependencies](#Install-Dependencies)
-    3. [Install Deepstream SDK](#Install-Deepstream-SDK)
-4. [Project Setup](#Project-Setup)
-5. [Running the Application](#Running-the-Application)
+    1. [Prerequisites](#1-Prerequisites)
+    2. [Install Dependencies](#2-Install-Dependencies)
+    3. [Install Deepstream SDK](#3-Install-Deepstream-SDK)
+3. [Project Setup](#Project-Setup)
+    1. [Prerequisites](#1-Prerequisites-1)
+    2. [Edit Makefile](#2-Edit-Makefile)
+       1. [Update GCC path](#1Update-GCC-path)
+       2. [Update the Deepstream Version](#2Update-the-Deepstream-Version)
+       3. [Optional](#3-omit-18-20-and-40-43if-opencv-and-libcurl-is--not-installed-manuallyoptional)
+4. [Running the Application](#Running-the-Application)
 
 ## Introduction
 
