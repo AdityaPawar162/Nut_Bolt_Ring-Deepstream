@@ -20,7 +20,7 @@ The main objective of this project is to develop a real-time detection system th
     3. [Install Deepstream SDK](#3-Install-Deepstream-SDK)
 3. [Running the Application](#Running-the-Application)
     1. [Clone the Repository](#1-clone-the-repository)
-    2. [Run the application](#2-run-the-application)
+    2. [Compile](#2-compile)
 4. [Video Demonstration of the app](#video-demonstration-of-the-app)
    
 ## Introduction
